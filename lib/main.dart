@@ -80,7 +80,7 @@ ThemeData _buildReplyLightTheme(BuildContext context) {
     ),
     textTheme: _buildReplyLightTextTheme(base.textTheme),
     scaffoldBackgroundColor: ReplyColors.blue50,
-    bottomAppBarTheme: const BottomAppBarTheme(
+    bottomAppBarTheme: const BottomAppBarThemeData(
       color: ReplyColors.blue700,
     ),
   );
@@ -113,7 +113,7 @@ ThemeData _buildReplyDarkTheme(BuildContext context) {
     ),
     textTheme: _buildReplyDarkTextTheme(base.textTheme),
     scaffoldBackgroundColor: ReplyColors.black900,
-    bottomAppBarTheme: const BottomAppBarTheme(
+    bottomAppBarTheme: const BottomAppBarThemeData(
       color: ReplyColors.darkBottomAppBarBackground,
     ),
   );
