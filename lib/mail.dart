@@ -203,7 +203,7 @@ class MailPreviewCard extends StatelessWidget {
                 : theme.scaffoldBackgroundColor,
             iconColor: currentEmailStarred
                 ? colorScheme.onSecondary
-                : colorScheme.onBackground,
+                : colorScheme.onSurface,
             alignment: Alignment.centerRight,
             padding: const EdgeInsetsDirectional.only(end: 20),
           ),
@@ -236,7 +236,7 @@ class _DismissibleContainer extends StatelessWidget {
     return AnimatedContainer(
       alignment: alignment,
       color: backgroundColor,
-      curve: standardEasing,
+      curve: Easing.legacy,
       duration: kThemeAnimationDuration,
       padding: padding,
       child: Material(
@@ -324,10 +324,10 @@ class _MailPreview extends StatelessWidget {
                   ),
                 ),
                 if (email.containsPictures) ...[
-                  Flexible(
+                  const Flexible(
                     fit: FlexFit.loose,
                     child: Column(
-                      children: const [
+                      children: [
                         SizedBox(height: 20),
                         _PicturePreview(),
                       ],

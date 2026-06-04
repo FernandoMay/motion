@@ -114,20 +114,20 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     _drawerCurve = CurvedAnimation(
       parent: _drawerController,
-      curve: standardEasing,
-      reverseCurve: standardEasing.flipped,
+      curve: Easing.legacy,
+      reverseCurve: Easing.legacy.flipped,
     );
 
     _dropArrowCurve = CurvedAnimation(
       parent: _dropArrowController,
-      curve: standardEasing,
-      reverseCurve: standardEasing.flipped,
+      curve: Easing.legacy,
+      reverseCurve: Easing.legacy.flipped,
     );
 
     _bottomAppBarCurve = CurvedAnimation(
       parent: _bottomAppBarController,
-      curve: standardEasing,
-      reverseCurve: standardEasing.flipped,
+      curve: Easing.legacy,
+      reverseCurve: Easing.legacy.flipped,
     );
   }
 
@@ -168,8 +168,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         context,
         listen: false,
       ).bottomDrawerVisible = true;
-      _drawerController.animateTo(0.4, curve: standardEasing);
-      _dropArrowController.animateTo(0.35, curve: standardEasing);
+      _drawerController.animateTo(0.4, curve: Easing.legacy);
+      _dropArrowController.animateTo(0.35, curve: Easing.legacy);
       return;
     }
 
@@ -342,7 +342,7 @@ class _AnimatedBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var fadeOut = Tween<double>(begin: 1, end: -1).animate(
-      drawerController.drive(CurveTween(curve: standardEasing)),
+      drawerController.drive(CurveTween(curve: Easing.legacy)),
     );
 
     return Selector<EmailStore, bool>(
