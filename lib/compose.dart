@@ -118,23 +118,20 @@ class _SubjectRowState extends State<_SubjectRow> {
               decoration: InputDecoration.collapsed(
                 hintText: 'Subject',
                 hintStyle: theme.textTheme.titleLarge!.copyWith(
-                  color: theme.colorScheme.primary.withOpacity(0.5),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.5),
                 ),
               ),
             ),
           ),
           IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            icon: IconButton(
-              icon: ImageIcon(
-                const AssetImage(
-                  'reply/icons/twotone_send.png',
-                  package: 'flutter_gallery_assets',
-                ),
-                color: colorScheme.onSurface,
+            icon: ImageIcon(
+              const AssetImage(
+                'reply/icons/twotone_send.png',
+                package: 'flutter_gallery_assets',
               ),
-              onPressed: () => Navigator.of(context).pop(),
+              color: colorScheme.onSurface,
             ),
+            onPressed: () => Navigator.of(context).pop(),
           ),
         ],
       ),

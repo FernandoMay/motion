@@ -70,7 +70,7 @@ class BottomDrawer extends StatelessWidget {
               child: Text(
                 'FOLDERS',
                 style: theme.textTheme.bodySmall!.copyWith(
-                  color: ReplyColors.white50.withOpacity(0.64),
+                  color: ReplyColors.white50.withValues(alpha: 0.64),
                 ),
               ),
             ),
@@ -167,25 +167,37 @@ class SettingsBottomSheetState extends State<SettingsBottomSheet> {
               ExpansionTile(
                 title: const Text('Theme'),
                 children: [
-                  for (var themeMode in ThemeMode.values)
-                    RadioListTile(
-                      title: Text(themeMode.name),
-                      value: themeMode,
-                      groupValue: _themeMode,
-                      onChanged: setTheme,
+                  RadioGroup<ThemeMode>(
+                    groupValue: _themeMode,
+                    onChanged: setTheme,
+                    child: Column(
+                      children: [
+                        for (var themeMode in ThemeMode.values)
+                          RadioListTile(
+                            title: Text(themeMode.name),
+                            value: themeMode,
+                          ),
+                      ],
                     ),
+                  ),
                 ],
               ),
               ExpansionTile(
                 title: const Text('Slow Motion'),
                 children: [
-                  for (var animationSpeed in SlowMotionSpeedSetting.values)
-                    RadioListTile(
-                      title: Text('${animationSpeed.value.toInt()}x'),
-                      value: animationSpeed,
-                      groupValue: _slowMotionSpeedSetting,
-                      onChanged: setSlowMotionSpeed,
+                  RadioGroup<SlowMotionSpeedSetting>(
+                    groupValue: _slowMotionSpeedSetting,
+                    onChanged: setSlowMotionSpeed,
+                    child: Column(
+                      children: [
+                        for (var animationSpeed in SlowMotionSpeedSetting.values)
+                          RadioListTile(
+                            title: Text('${animationSpeed.value.toInt()}x'),
+                            value: animationSpeed,
+                          ),
+                      ],
                     ),
+                  ),
                 ],
               ),
             ],

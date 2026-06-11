@@ -15,16 +15,13 @@ class MailViewRouterDelegate extends RouterDelegate<void>
 
   @override
   Widget build(BuildContext context) {
-    bool handlePopPage(Route<dynamic> route, dynamic result) {
-      return false;
-    }
-
     return Selector<EmailStore, String>(
       selector: (context, emailStore) => emailStore.currentlySelectedInbox,
       builder: (context, currentlySelectedInbox, child) {
         return Navigator(
           key: navigatorKey,
-          onPopPage: handlePopPage,
+          // ignore: deprecated_member_use
+          onPopPage: (route, result) => false,
           pages: [
             // TODO: Add Fade through transition between mailbox pages (Motion)
             CustomTransitionPage(
@@ -72,8 +69,8 @@ class MailViewRouterDelegate extends RouterDelegate<void>
     if (onCompose) {
       // TODO: Add Container Transform from FAB to compose email page (Motion)
       emailStore.onCompose = false;
-      return SynchronousFuture<bool>(false);
-    }
+                return SynchronousFuture<bool>(false);
+                }
 
     // Handles the back button when the bottom drawer is visible on the
     // MailView. Dismisses the drawer on back button press.
@@ -486,7 +483,7 @@ class _MailViewHeader extends StatelessWidget {
                     color: Theme.of(context)
                         .colorScheme
                         .onSurface
-                        .withOpacity(0.64),
+                        .withValues(alpha: 0.64),
                   ),
                 ),
               ],

@@ -44,7 +44,7 @@ class ReplyAppState extends State<ReplyApp> {
               routeInformationParser: _routeInformationParser,
               routerDelegate: _routerDelegate,
               themeMode: themeMode,
-              title: 'Reply',
+              title: 'Motion Mail',
               darkTheme: _buildReplyDarkTheme(context),
               theme: _buildReplyLightTheme(context),
             );
@@ -54,60 +54,52 @@ class ReplyAppState extends State<ReplyApp> {
 }
 
 ThemeData _buildReplyLightTheme(BuildContext context) {
-  final base = ThemeData.light();
-  return base.copyWith(
+  final colorScheme = ColorScheme.fromSeed(
+    seedColor: const Color(0xFF1976D2),
+    brightness: Brightness.light,
+  );
+  return ThemeData.from(
+    colorScheme: colorScheme,
+    useMaterial3: true,
+  ).copyWith(
     bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: ReplyColors.blue700,
-      modalBackgroundColor: Colors.white.withOpacity(0.7),
+      backgroundColor: colorScheme.primary,
+      modalBackgroundColor: Colors.white.withValues(alpha: 0.7),
     ),
     cardColor: ReplyColors.white50,
     chipTheme: _buildChipTheme(
-      ReplyColors.blue700,
+      colorScheme.primary,
       ReplyColors.lightChipBackground,
       Brightness.light,
     ),
-    colorScheme: const ColorScheme.light(
-      primary: ReplyColors.blue700,
-      secondary: ReplyColors.orange500,
-      surface: ReplyColors.white50,
-      error: ReplyColors.red400,
-      onPrimary: ReplyColors.white50,
-      onSecondary: ReplyColors.black900,
-      onSurface: ReplyColors.black900,
-      onError: ReplyColors.black900,
-    ),
-    textTheme: _buildReplyLightTextTheme(base.textTheme),
+    textTheme: _buildReplyLightTextTheme(ThemeData.light().textTheme),
     scaffoldBackgroundColor: ReplyColors.blue50,
-    bottomAppBarTheme: const BottomAppBarThemeData(
-      color: ReplyColors.blue700,
+    bottomAppBarTheme: BottomAppBarThemeData(
+      color: colorScheme.primary,
     ),
   );
 }
 
 ThemeData _buildReplyDarkTheme(BuildContext context) {
-  final base = ThemeData.dark();
-  return base.copyWith(
+  final colorScheme = ColorScheme.fromSeed(
+    seedColor: const Color(0xFF1976D2),
+    brightness: Brightness.dark,
+  );
+  return ThemeData.from(
+    colorScheme: colorScheme,
+    useMaterial3: true,
+  ).copyWith(
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: ReplyColors.darkDrawerBackground,
-      modalBackgroundColor: Colors.black.withOpacity(0.7),
+      modalBackgroundColor: Colors.black.withValues(alpha: 0.7),
     ),
     cardColor: ReplyColors.darkCardBackground,
     chipTheme: _buildChipTheme(
-      ReplyColors.blue200,
+      colorScheme.primary,
       ReplyColors.darkChipBackground,
       Brightness.dark,
     ),
-    colorScheme: const ColorScheme.dark(
-      primary: ReplyColors.blue200,
-      secondary: ReplyColors.orange300,
-      surface: ReplyColors.black800,
-      error: ReplyColors.red200,
-      onPrimary: ReplyColors.black900,
-      onSecondary: ReplyColors.black900,
-      onSurface: ReplyColors.white50,
-      onError: ReplyColors.black900,
-    ),
-    textTheme: _buildReplyDarkTextTheme(base.textTheme),
+    textTheme: _buildReplyDarkTextTheme(ThemeData.dark().textTheme),
     scaffoldBackgroundColor: ReplyColors.black900,
     bottomAppBarTheme: const BottomAppBarThemeData(
       color: ReplyColors.darkBottomAppBarBackground,
@@ -121,9 +113,9 @@ ChipThemeData _buildChipTheme(
   Brightness brightness,
 ) {
   return ChipThemeData(
-    backgroundColor: primaryColor.withOpacity(0.12),
-    disabledColor: primaryColor.withOpacity(0.87),
-    selectedColor: primaryColor.withOpacity(0.05),
+    backgroundColor: primaryColor.withValues(alpha: 0.12),
+    disabledColor: primaryColor.withValues(alpha: 0.87),
+    selectedColor: primaryColor.withValues(alpha: 0.05),
     secondarySelectedColor: chipBackground,
     padding: const EdgeInsets.all(4),
     shape: const StadiumBorder(),

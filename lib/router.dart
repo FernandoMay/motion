@@ -56,7 +56,14 @@ class ReplyRouterDelegate extends RouterDelegate<ReplyRoutePath>
         builder: (context, routePath, child) {
           return Navigator(
             key: navigatorKey,
-            onPopPage: _handlePopPage,
+            // ignore: deprecated_member_use
+            onPopPage: (route, result) {
+              assert(route.willHandlePopInternally ||
+                  replyState.routePath is ReplySearchPath);
+              final didPop = route.didPop(result);
+              if (didPop) replyState.routePath = const ReplyHomePath();
+              return didPop;
+            },
             pages: [
               // TODO: Add Shared Z-Axis transition from search icon to search view page (Motion)
               const CustomTransitionPage(
@@ -73,18 +80,6 @@ class ReplyRouterDelegate extends RouterDelegate<ReplyRoutePath>
         },
       ),
     );
-  }
-
-  bool _handlePopPage(Route<dynamic> route, dynamic result) {
-    // _handlePopPage should not be called on the home page because the
-    // PopNavigatorRouterDelegateMixin will bubble up the pop to the
-    // SystemNavigator if there is only one route in the navigator.
-    assert(route.willHandlePopInternally ||
-        replyState.routePath is ReplySearchPath);
-
-    final bool didPop = route.didPop(result);
-    if (didPop) replyState.routePath = const ReplyHomePath();
-    return didPop;
   }
 
   @override

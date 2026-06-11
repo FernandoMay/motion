@@ -593,14 +593,14 @@ class _BottomDrawerDestinations extends StatelessWidget {
                     ),
                     color: destination.name == currentlySelectedInbox
                         ? theme.colorScheme.secondary
-                        : ReplyColors.white50.withOpacity(0.64),
+                        : ReplyColors.white50.withValues(alpha: 0.64),
                   ),
                   title: Text(
                     destination.name,
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: destination.name == currentlySelectedInbox
                           ? theme.colorScheme.secondary
-                          : ReplyColors.white50.withOpacity(0.64),
+                          : ReplyColors.white50.withValues(alpha: 0.64),
                     ),
                   ),
                 );
@@ -644,12 +644,12 @@ class _BottomDrawerFolderSection extends StatelessWidget {
                   folders[folder]!,
                   package: _assetsPackage,
                 ),
-                color: ReplyColors.white50.withOpacity(0.64),
+                color: ReplyColors.white50.withValues(alpha: 0.64),
               ),
               title: Text(
                 folder,
                 style: theme.textTheme.bodyMedium!.copyWith(
-                  color: ReplyColors.white50.withOpacity(0.64),
+                  color: ReplyColors.white50.withValues(alpha: 0.64),
                 ),
               ),
             ),
